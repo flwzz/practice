@@ -1,0 +1,8 @@
+<!-- pattern.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 100 100" fill="none">
+  <line x1="0" y1="6" x2="100" y2="6" stroke="currentColor" stroke-width="12" />
+  <line x1="0" y1="26" x2="100" y2="26" stroke="currentColor" stroke-width="12" />
+  <line x1="0" y1="46" x2="100" y2="46" stroke="currentColor" stroke-width="12" />
+  <line x1="0" y1="66" x2="100" y2="66" stroke="currentColor" stroke-width="12" />
+  <line x1="0" y1="86" x2="100" y2="86" stroke="currentColor" stroke-width="12" />
+</svg>

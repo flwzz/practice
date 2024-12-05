@@ -29,6 +29,11 @@ export default defineConfig({
       path: '/table',
       component: './Table',
     },
+    {
+      name: ' 组件展示',
+      path: '/component-preview',
+      component: './ComponentPreview',
+    },
   ],
   npmClient: 'pnpm',
 });
