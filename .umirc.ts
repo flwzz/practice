@@ -34,7 +34,11 @@ export default defineConfig({
       path: '/component-preview',
       component: './ComponentPreview',
     },
+    {
+      name: 'SSE',
+      path: '/sse',
+      component: './SSE',
+    },
   ],
   npmClient: 'pnpm',
 });
-
