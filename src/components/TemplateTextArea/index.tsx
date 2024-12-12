@@ -44,7 +44,7 @@ const createVariableElement = (option: VariableOption) => {
   node.setAttribute('contenteditable', 'false');
   node.setAttribute(
     'style',
-    `display: inline-block; padding: 2px 4px; background-color: pink; margin: 0 2px; border-radius: 4px; font-size: 10px; color: green; `,
+    `padding: 2px 4px; background-color: pink; margin: 0 2px; border-radius: 4px; font-size: 10px; color: green; `,
   );
   node.innerHTML = option.html || option.value;
   return node;
@@ -123,16 +123,17 @@ const TemplateTextArea: React.FC<TemplateTextAreaProps> = (props) => {
   );
 
   const onKeyDown = useMemoizedFn((e: KeyboardEvent) => {
-    if (range) {
-      // 光标在变量内，不触发快捷键
-      if (
-        range &&
-        (range.commonAncestorContainer as Element).nodeType ===
-          Node.TEXT_NODE &&
-        range.commonAncestorContainer.parentElement?.tagName ===
-          customElementTag.toLocaleUpperCase()
-      ) {
-        return;
+    // 光标在变量内，不触发快捷键
+    if (
+      range &&
+      (range.commonAncestorContainer as Element).nodeType === Node.TEXT_NODE //这个可以不要
+    ) {
+      let parent = range.commonAncestorContainer.parentElement;
+      while (parent && parent !== textAreaRef.current) {
+        if (parent.tagName === customElementTag.toLocaleUpperCase()) {
+          return;
+        }
+        parent = parent.parentElement;
       }
     }
     if (variableOptionMap.has(e.key)) {
@@ -204,7 +205,10 @@ const TemplateTextArea: React.FC<TemplateTextAreaProps> = (props) => {
 
   useEffect(() => {
     if (textAreaRef.current && value)
-      textAreaRef.current.innerHTML = convertPlainTextToHtml(value, options || []);
+      textAreaRef.current.innerHTML = convertPlainTextToHtml(
+        value,
+        options || [],
+      );
   }, []);
 
   return (
